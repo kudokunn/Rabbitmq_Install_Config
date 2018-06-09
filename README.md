@@ -11,4 +11,13 @@ B2: Sau khi xác định thì xóa bằng tay hoặc cài mới package lên và
 
          rpm -ivh --replacefiles <package.rpm>
 
-B3: 
+2. Cài đặt:
+
+         curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
+         sudo yum install erlang-20.2.2-1.el7.centos.x86_64
+
+3. Rabbitmq:
+           
+           yum install socat -y
+           wget https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.5/rabbitmq-server-3.7.5-1.el7.noarch.rpm
+           yum install rabbitmq-server-3.7.5-1.el7.noarch.rpm
