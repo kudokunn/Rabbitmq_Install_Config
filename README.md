@@ -21,3 +21,31 @@ B2: Sau khi xác định thì xóa bằng tay hoặc cài mới package lên và
            yum install socat -y
            wget https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.5/rabbitmq-server-3.7.5-1.el7.noarch.rpm
            yum install rabbitmq-server-3.7.5-1.el7.noarch.rpm
+
+4. Start service
+
+           service rabbitmq-server start
+           cp /usr/share/doc/rabbitmq-server-3.5.2/rabbitmq.config.example /etc/rabbitmq/
+           mv /etc/rabbitmq/rabbitmq.config.example  /etc/rabbitmq/rabbitmq.config
+           
+ 5. Kích hoạt web giao diện
+ 
+Rabbitmq có đi kèm một plugin cho phép quản trị hoạt động qua một web interface trông rất trực quan và thân thiện. Nhưng mặc định, plugin này không được enable thực hiện lệnh sau:
+
+         rabbitmq-plugins enable rabbitmq_management
+         
+6. Thêm user để đăng nhập:
+
+Add user:
+
+         sudo rabbitmqctl add_user admin[<username>] admin[<password>]
+
+Set tags:
+
+         sudo rabbitmqctl set_user_tags admin[<username>] management
+
+Set permission for user with vhost:
+
+         sudo rabbitmqctl set_permissions admin[<username>] ".*" ".*" ".*"
+         
+
