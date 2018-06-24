@@ -226,4 +226,55 @@ Cấu hình SSL: vào file cấu hình rabbit.config bổ sung cấu hình rabbi
             ]}
 
           ].
-          
+  
+ ### Cấu hình xác thực LDAP:
+ 
+ Bước 1: Enable LDAP: 
+ 
+            rabbitmq-plugins enable rabbitmq_auth_backend_ldap
+ 
+ Bước 2: Cấu hình trong file config sử dụng xác thực LDAP
+ 
+             rabbit,[{auth_backends, [rabbit_auth_backend_ldap, rabbit_auth_backend_internal]}]}
+             
+Bước 3: Cấu hình LDAP:
+Với: 
+    *  Servers: địa chỉ server ldap.
+    *  Port: cổng kết nối server.
+    * User_dn_pattern: cấu hình map thông tin tài khoản với ldap, giá trị username được lấy ra bằng từ khoá ${username}.
+    * Log: bật chức năng log khi đăng nhập (true/false/network).
+    * Use_ssl: bật chức năng ssl.
+    * Tag_queries: set quyền sử dụng administrator và management.
+              
+
+    {rabbitmq_auth_backend_ldap,
+
+     [  {servers,            ["192.168.6.8"]},
+
+     {port,                  389},
+
+     {user_dn_pattern, "uid=${username},ou=Users,dc=openldap,dc=elcom,dc=com,dc=vn"},
+
+     {log,                   network},
+
+     {use_ssl,               false},
+
+     {tag_queries, [{administrator, {constant, true}},
+
+                   {management,    {constant, true}}]}
+
+      ]}
+
+    ].
+    
+Bước 4: Reset lại service
+
+Bước 5: Cấu hình LDAP server:
+
++ Tạo Users group: DN: ou=Users,dc=openldap,dc=elcom,dc=com,dc=vn.
++ Add các thông tin tài khoản, username là trường uid.
+
++ Tạo Virtual hosts group: DN: ou=vhost,dc=openldap,dc=elcom,dc=com,dc=vn.
++ Add Organisational Unit tên là đường dẫn virtual hosts.\
+
+![](picture2.png)
