@@ -129,3 +129,63 @@ File cấu hình mẫu trong cty:
                          {resource_path, "http://10.0.25.233:8081/auth/resource"}]}
          ].
 
+### Một số lệnh cơ bản
+
+          rabbit# rabbitmqctl status
+
+          rabbit# rabbitmqctl cluster_status
+
+          rabbit# rabbitmqctl list_queues
+
+          rabbit# rabbitmqctl list_users
+
+          rabbit# rabbitmqctl list exchanges
+          
+          rabbit# rabbitmqctl start_app/stop_app
+
+          rabbit# service rabbitmq-server stop/start/reset
+
+          rabbit# rabbitmq-plugins enable management-
+          
+ ### Thành phần file cấu hình
+ 
+* File rabbitmq-env.conf là file chứa thông tin cấu hình về node name và đường dẫn config có nội dung sau:
+
+          #example rabbitmq-env.conf file entries
+
+          #Rename the node
+
+          RABBIT_NODENAME=rabbit@myhost
+
+          #Config file location and new filename bunnies.config
+
+          RABBIT_CONFIG_FILE=/etc/rabbitmq/rabbit.config
+          
+* File rabbit.config là file chứa các thông tin cấu hình khi khởi tạo dịch vụ rabbitmq-server. File config căn bản:
+
+          [
+
+          {rabbit, 
+
+              [{auth_backends,[rabbit_auth_backend_internal]},
+
+               {default_permissions,[<<".*">>,<<".*">>,<<".*">>]},
+
+               {default_user,<<"guest">>},
+
+               {default_user_tags,[administrator]},
+
+               {default_vhost,<<"/">>}
+
+              ]}
+
+          ].
+  
+### Update lại cấu hình
+
+Các bước update lại cấu hình của server RabbitMQ:
+
+        rabbit# service rabbitmq-server reset
+
+        rabbit# rabbitmqctl environment
+(Check lại cấu hình thay đổi)
