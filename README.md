@@ -188,4 +188,32 @@ Các bước update lại cấu hình của server RabbitMQ:
         rabbit# service rabbitmq-server reset
 
         rabbit# rabbitmqctl environment
+        
 (Check lại cấu hình thay đổi)
+
+### Bật chức năng quản lý RabbitMQ Server trên giao diện web.
+
+      rabbitmq-plugins enable rabbitmq_management
+      
+Truy cập địa chỉ https://localhost:15672/, đăng nhập với tài khoản guest/guest.
+
+Cấu hình SSL: vào file cấu hình rabbit.config bổ sung cấu hình rabbitmq_management như sau:
+
+        [{rabbitmq_management,
+
+          [{listener, [{port,     15672},
+
+               {ssl,      true},
+
+               {ssl_opts, [{cacertfile, "/path/to/cacert.pem"},
+
+                           {certfile,   "/path/to/cert.pem"},
+
+                           {keyfile,    "/path/to/key.pem"}]}
+
+              ]}
+
+            ]}
+
+          ].
+          
