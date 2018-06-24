@@ -139,7 +139,7 @@ File cấu hình mẫu trong cty:
 
           rabbit# rabbitmqctl list_users
 
-          rabbit# rabbitmqctl list exchanges
+          rabbit# rabbitmqctl list_exchanges
           
           rabbit# rabbitmqctl start_app/stop_app
 
