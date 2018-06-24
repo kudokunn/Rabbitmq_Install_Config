@@ -131,6 +131,8 @@ File cấu hình mẫu trong cty:
 
 ### Một số lệnh cơ bản
 
+* 1. Lệnh liên quan đến rabbitmqctl
+
           rabbit# rabbitmqctl status
 
           rabbit# rabbitmqctl cluster_status
@@ -141,11 +143,19 @@ File cấu hình mẫu trong cty:
 
           rabbit# rabbitmqctl list_exchanges
           
-          rabbit# rabbitmqctl start_app/stop_app
+          rabbit# rabbitmqctl start_app/stop_app # start hoặc stop node đang chạy. 
 
           rabbit# service rabbitmq-server stop/start/reset
 
-          rabbit# rabbitmq-plugins enable management-
+* 2. Lệnh liên quan đến rabbitmq-plugins
+
+           rabbitmq-plugins list # danh sách các plugins đang dùng 
+            
+           rabbitmq-plugins enable/disable [plugin_name] # kích hoạt hoặc hủy các plugins 
+           Ex: rabbitmq-plugins enable rabbitmq_management. 
+          
+           rabbitmq-plugins set [name_plugins] # Bật các plugin được chỉ định và tất cả các phụ thuộc của chúng. Không giống như enable, lệnh này bỏ qua và ghi đè bất kỳ plugin đã bật nào hiện có. Khi thiết lập không có tham số plugin thì nó sẽ "vô hiệu hóa tất cả các plugin". 
+
           
  ### Thành phần file cấu hình
  
