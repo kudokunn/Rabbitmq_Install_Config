@@ -72,6 +72,11 @@ Xóa user
 
          rabbitmqctl delete_user admin
 
+Quant-edge
+    
+          sudo rabbitmqctl add_user qe.dev 123
+          sudo rabbitmqctl set_user_tags qe.dev administrator
+          sudo rabbitmqctl set_permissions -p / qe.dev ".*" ".*" ".*" 
 
 ### Cấu hình:
 File cấu hình mẫu trong cty:
