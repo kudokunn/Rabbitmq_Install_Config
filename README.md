@@ -33,6 +33,7 @@ B2: Sau khi xác định thì xóa bằng tay hoặc cài mới package lên và
 
          curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
          sudo yum install erlang-20.2.2-1.el7.centos.x86_64
+         # Select phien ban: https://packages.erlang-solutions.com/erlang/
 
 3. Rabbitmq:
            
